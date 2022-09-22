@@ -7,7 +7,28 @@ using System.Threading.Tasks;
 namespace Denombrements
 {
     class Program
-    {
+    { 
+        /// <summary>
+        /// fonction de calcul des termes
+        /// </summary>
+        /// <param name="ini">parametre d'initialisation de la boucle</param>
+        /// <param name="borneMax">parametre d'arret de la boucle</param>
+        /// <returns>resultat de la multiplication</returns>
+        static long calcul(int ini, int borneMax)
+        {
+            long r = 1;
+            for (int k = ini; k <= borneMax; k++)
+            {
+                r *= k;
+            }
+            return r;
+        }
+
+    
+        /// <summary>
+        /// programme principal
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             int c = 1;
@@ -20,17 +41,19 @@ namespace Denombrements
                 Console.Write("Choix :                            ");
                 c = int.Parse(Console.ReadLine());
 
-                if (c == 0) { Environment.Exit(0); }
+                if (c == 0)
+                {
+                    Environment.Exit(0);
+                }
 
                 if (c == 1)
                 {
                     Console.Write("nombre total d'éléments à gérer = "); // le nombre d'éléments à gérer
                     int n = int.Parse(Console.ReadLine()); // saisir le nombre
-                                                           // calcul de r
-                    long r = 1;
-                    for (int k = 1; k <= n; k++)
-                        r *= k;
+                    // calcul de r
+                    long r = calcul(1, n);                                      
                     Console.WriteLine(n + "! = " + r);
+                    
                 }
                 else
                 {
@@ -41,11 +64,10 @@ namespace Denombrements
                         Console.Write("nombre d'éléments dans le sous ensemble = "); // le sous ensemble
                         int n = int.Parse(Console.ReadLine()); // saisir le nombre
                         // calcul de r
-                        long r = 1;
-                        for (int k = (t - n + 1); k <= t; k++)
-                            r *= k;
-                        //Console.WriteLine("résultat = " + (r1 / r2));
+                        long r = calcul((t-n+1),t);
                         Console.WriteLine("A(" + t + "/" + n + ") = " + r);
+                        
+                           
                     }
                     else
                     {
@@ -54,16 +76,11 @@ namespace Denombrements
                         Console.Write("nombre d'éléments dans le sous ensemble = "); // le sous ensemble
                         int n = int.Parse(Console.ReadLine()); // saisir le nombre
                         // calcul de r1
-                        long r1 = 1;
-                        for (int k = (t - n + 1); k <= t; k++)
-                            r1 *= k;
-                        // calcul de r2
-                        long r2 = 1;
-                        for (int k = 1; k <= n; k++)
-                            r2 *= k;
-                        // calcul de r3
-                        //Console.WriteLine("résultat = " + (r1 / r2));
+                        long r1 = calcul((t - n + 1), t);
+                        long r2 = calcul(1, n);                                                
                         Console.WriteLine("C(" + t + "/" + n + ") = " + (r1 / r2));
+                        
+                            
                     }
                 }
             }
